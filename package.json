@@ -1,0 +1,13 @@
+{
+  "name": "scan-keystroke-rx",
+  "version": "1.0.0",
+  "description": "Rx scanner for specified phrase in the keystroke event stream",
+  "main": "index.js",
+  "repository": "git@github.com:aeldar/scan-keystroke-rx.git",
+  "author": "Eldar Aliyev <eldar.aliyev8@gmail.com>",
+  "license": "MIT",
+  "private": false,
+  "peerDependencies": {
+    "rxjs": "^6.0.0"
+  }
+}
