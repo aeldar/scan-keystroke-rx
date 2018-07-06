@@ -1,6 +1,6 @@
 
 import { fromEvent, Observable } from 'rxjs';
-import { map, scan, first, filter, window as win, debounceTime, mergeAll } from 'rxjs/operators';
+import { map, scan, take, filter, window as win, debounceTime, mergeAll } from 'rxjs/operators';
 
 const doc: Node = window && window.document;
 
@@ -16,7 +16,7 @@ const findKeywordInStream = (stream$: Observable<string>, keyword: string, ci: b
     filter((line: string) => line.length === keyword0.length), // optimize calcs
     map((line: string) => ci ? line.toLowerCase() : line), // case insensitive
     filter((line: string) => line === keyword0),
-    first(), // we only need one
+    take(1), // we only need one
   )
 }
 
