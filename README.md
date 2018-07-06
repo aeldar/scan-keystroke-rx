@@ -8,9 +8,9 @@ yarn add scan-keystroke-rx
 
 ## Use
 ```
-import { findKeyword } from 'scan-keystroke-rx';
+import { findPhrase } from 'scan-keystroke-rx';
 
-findKeyword('hello world').subscribe(
+findPhrase('hello world').subscribe(
   phrase => {
     console.log(`Phrase "${phrase}" detected! Format disk? (yes/no) default yes. Accepted.`);
   }
