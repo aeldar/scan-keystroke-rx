@@ -8,7 +8,7 @@ const typingsStreamFromNode = (node: Node): Observable<string> =>
     map((e: KeyboardEvent) => e.key),
   );
 
-const findKeywordInStream = (stream$: Observable<string>, keyword: string, ci: boolean): Observable<string> => {
+const findPhraseInStream = (stream$: Observable<string>, keyword: string, ci: boolean): Observable<string> => {
   const keyword0 = ci ? keyword.toLowerCase() : keyword;
   return stream$.pipe(
     scan((acc: string, curr: string) => acc + curr, ''),
@@ -19,7 +19,7 @@ const findKeywordInStream = (stream$: Observable<string>, keyword: string, ci: b
   )
 }
 
-export const findKeyword = (keyword: string, node: Node = doc, ci: boolean = true, resetTime: number = 1000): Observable<string> => {
+export const findPhrase = (keyword: string, node: Node = doc, ci: boolean = true, resetTime: number = 1000): Observable<string> => {
   const typings$: Observable<string> = typingsStreamFromNode(node);
   const reset$: Observable<null> = typings$.pipe(
     debounceTime(resetTime),
@@ -27,9 +27,9 @@ export const findKeyword = (keyword: string, node: Node = doc, ci: boolean = tru
   );
   return typings$.pipe(
     win(reset$),
-    map(w$ => findKeywordInStream(w$, keyword, ci)),
+    map(w$ => findPhraseInStream(w$, keyword, ci)),
     mergeAll(),
   );
 }
 
-export default findKeyword;
+export default findPhrase;
