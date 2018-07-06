@@ -9,5 +9,9 @@
   "private": false,
   "peerDependencies": {
     "rxjs": "^6.0.0"
+  },
+  "devDependencies": {
+    "rxjs": "^6.2.1",
+    "typescript": "^2.9.2"
   }
 }
