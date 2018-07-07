@@ -9,13 +9,16 @@
   "license": "MIT",
   "private": false,
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "lint": "tslint --project ."
   },
   "peerDependencies": {
     "rxjs": "^6.0.0"
   },
   "devDependencies": {
     "rxjs": "^6.2.1",
+    "tslint": "^5.10.0",
+    "tslint-config-airbnb": "^5.9.2",
     "typescript": "^2.9.2"
   }
 }
