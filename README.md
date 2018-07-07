@@ -1,5 +1,8 @@
 # scan-keystroke-rx
-Rx scanner for specified keyword in the keystroke event stream
+Observable scanner for specified phrase in the keystroke event stream.
+
+## Prerequisites
+* [RxJS](http://reactivex.io/rxjs/) >= 6
 
 ## Install
 ```
