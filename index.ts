@@ -8,18 +8,18 @@ const typingsStreamFromNode = (node: Node): Observable<string> =>
     map((e: KeyboardEvent) => e.key),
   );
 
-const findPhraseInStream = (stream$: Observable<string>, keyword: string, ci: boolean): Observable<string> => {
-  const keyword0 = ci ? keyword.toLowerCase() : keyword;
+const findPhraseInStream = (stream$: Observable<string>, phrase: string, ci: boolean): Observable<string> => {
+  const phrase0 = ci ? phrase.toLowerCase() : phrase;
   return stream$.pipe(
     scan((acc: string, curr: string) => acc + curr, ''),
-    filter((line: string) => line.length === keyword0.length), // optimize calcs
+    filter((line: string) => line.length === phrase0.length), // optimize calcs
     map((line: string) => ci ? line.toLowerCase() : line), // case insensitive
-    filter((line: string) => line === keyword0),
+    filter((line: string) => line === phrase0),
     take(1), // we only need one
   )
 }
 
-export const findPhrase = (keyword: string, node: Node = doc, ci: boolean = true, resetTime: number = 1000): Observable<string> => {
+export const findPhrase = (phrase: string, node: Node = doc, ci: boolean = true, resetTime: number = 1000): Observable<string> => {
   const typings$: Observable<string> = typingsStreamFromNode(node);
   const reset$: Observable<null> = typings$.pipe(
     debounceTime(resetTime),
@@ -27,7 +27,7 @@ export const findPhrase = (keyword: string, node: Node = doc, ci: boolean = true
   );
   return typings$.pipe(
     win(reset$),
-    map(w$ => findPhraseInStream(w$, keyword, ci)),
+    map((w$: Observable<string>) => findPhraseInStream(w$, phrase, ci)),
     mergeAll(),
   );
 }
