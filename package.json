@@ -7,6 +7,9 @@
   "author": "Eldar Aliyev <eldar.aliyev8@gmail.com>",
   "license": "MIT",
   "private": false,
+  "scripts": {
+    "build": "tsc"
+  },
   "peerDependencies": {
     "rxjs": "^6.0.0"
   },
